@@ -1,0 +1,28 @@
+{
+	"folders": [
+		{
+			"path": "../../../Downloads/LOLIN32_Blink (2)/LOLIN32_Blink"
+		},
+		{
+			"name": "game-console",
+			"path": "../../../game-console"
+		},
+		{
+			"name": "ESP32ForestController",
+			"path": "../../ESP32ForestController"
+		},
+		{
+			"name": "LoLin32AP_Processor",
+			"path": "../../LoLin32AP_Processor"
+		},
+		{
+			"name": "macropad",
+			"path": "../../Schule1/Werkstatt/Walt/macropad"
+		},
+		{
+			"name": "Wifi_weigl_real",
+			"path": "../../../Downloads/Wifi_weigl_real/Wifi_weigl_real"
+		}
+	],
+	"settings": {}
+}
