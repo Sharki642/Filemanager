@@ -1,6 +1,5 @@
 #importing the tkinter module
 import tkinter as tk
-import shutil
 from docx import Document
 
 print("hello world!")
@@ -50,16 +49,35 @@ def create_protokoll_en():
     window = tk.Toplevel(root)
     window.title("English Protokoll")
     window.minsize(300, 200)
-    tk.Label(window, text="Lets create the english protokoll").pack()
-    textfeld_eng = tk.Text(window, height=5, width=30)
+    tk.Label(window, text="File name:").pack()
+    textfeld_eng = tk.Text(window, height=2, width=30)
     textfeld_eng.pack()
+    tk.Label(window, text="Title:").pack()
+    textfeld_title = tk.Text(window, height=2, width=30)
+    textfeld_title.pack()
 
     def erstelle_date_eng():
         eingabe_name = textfeld_eng.get("1.0", tk.END).strip()
+        eingabe_title = textfeld_title.get("1.0", tk.END).strip()
         if not eingabe_name:
-            tk.Label(window, text="Please enter a name!", fg="red").pack()
+            tk.Label(window, text="Please enter a file name!", fg="red").pack()
             return
-        shutil.copy("vorlage_english.docx", f"{eingabe_name}.docx")
+        if not eingabe_title:
+            tk.Label(window, text="Please enter a title!", fg="red").pack()
+            return
+        doc = Document("vorlage_english.docx")
+        alle_paragraphen = list(doc.paragraphs)
+        for table in doc.tables:
+            for row in table.rows:
+                for cell in row.cells:
+                    for para in cell.paragraphs:
+                        alle_paragraphen.append(para)
+        for para in alle_paragraphen:
+            if "<name of exercise>" in para.text:
+                voller_text = para.text.replace("<name of exercise>", eingabe_title)
+                for i, run in enumerate(para.runs):
+                    run.text = voller_text if i == 0 else ""
+        doc.save(f"{eingabe_name}.docx")
         tk.Label(window, text=f"File '{eingabe_name}.docx' created!", fg="green").pack()
 
     tk.Button(window, text="Create File", command=erstelle_date_eng).pack()
