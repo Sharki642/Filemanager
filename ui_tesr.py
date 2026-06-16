@@ -93,11 +93,16 @@ image = tk.PhotoImage(file="image3.png").subsample(2, 2)
 tk.Label(root, image=image).pack()
 
 
-Protokoll_de = tk.Button(root, text="Create German Protokoll", command=create_protokoll_de)
-Protokoll_de.pack()
+btn_frame = tk.Frame(root, bg="White")
+btn_frame.pack(pady=20)
 
-Protokoll_en = tk.Button(root, text="Create English Protokoll", command=create_protokoll_en)
-Protokoll_en.pack()
+btn_style = {"font": ("Arial", 13, "bold"), "width": 20, "height": 2, "bd": 0, "cursor": "hand2"}
+
+Protokoll_de = tk.Button(btn_frame, text="Deutsches Protokoll", bg="#c08df3", fg="white", activebackground="#7b2fbe", command=create_protokoll_de, **btn_style)
+Protokoll_de.pack(side=tk.LEFT, padx=10)
+
+Protokoll_en = tk.Button(btn_frame, text="English Protokoll", bg="#88b3f7", fg="white", activebackground="#5a9eff", command=create_protokoll_en, **btn_style)
+Protokoll_en.pack(side=tk.LEFT, padx=10)
 
 
 
