@@ -1,5 +1,6 @@
 #importing the tkinter module
 import tkinter as tk
+import os
 from docx import Document
 
 print("hello world!")
@@ -43,6 +44,7 @@ def create_protokoll_de():
                         run.text = voller_text if i == 0 else ""
         doc.save(f"{eingabe_name}.docx")
         tk.Label(window, text=f"Datei '{eingabe_name}.docx' erstellt!", fg="green").pack()
+        os.startfile(f"{eingabe_name}.docx")
 
     tk.Button(window, text="Datei erstellen", command=erstelle_date_ger).pack()
 
@@ -81,6 +83,7 @@ def create_protokoll_en():
                     run.text = voller_text if i == 0 else ""
         doc.save(f"{eingabe_name}.docx")
         tk.Label(window, text=f"File '{eingabe_name}.docx' created!", fg="green").pack()
+        os.startfile(f"{eingabe_name}.docx")
 
     tk.Button(window, text="Create File", command=erstelle_date_eng).pack()
 
