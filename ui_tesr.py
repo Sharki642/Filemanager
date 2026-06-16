@@ -34,11 +34,13 @@ def create_protokoll_de():
                 for cell in row.cells:
                     for para in cell.paragraphs:
                         alle_paragraphen.append(para)
+        ersetzungen = {"<Überschrift>": eingabe_ueberschrift, "<Bauteil>": eingabe_ueberschrift}
         for para in alle_paragraphen:
-            if "<Überschrift>" in para.text:
-                voller_text = para.text.replace("<Überschrift>", eingabe_ueberschrift)
-                for i, run in enumerate(para.runs):
-                    run.text = voller_text if i == 0 else ""
+            for platzhalter, wert in ersetzungen.items():
+                if platzhalter in para.text:
+                    voller_text = para.text.replace(platzhalter, wert)
+                    for i, run in enumerate(para.runs):
+                        run.text = voller_text if i == 0 else ""
         doc.save(f"{eingabe_name}.docx")
         tk.Label(window, text=f"Datei '{eingabe_name}.docx' erstellt!", fg="green").pack()
 
