@@ -89,7 +89,7 @@ root.minsize(400, 400)
 
 root.configure(bg="White")
 tk.Label(root, text="Welcome to FileManager").pack()
-image = tk.PhotoImage(file="image2.png")
+image = tk.PhotoImage(file="image3.png").subsample(2, 2)
 tk.Label(root, image=image).pack()
 
 
