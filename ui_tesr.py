@@ -88,7 +88,7 @@ root.minsize(400, 400)
 #inside
 
 root.configure(bg="White")
-tk.Label(root, text="Welcome to FileManager").pack()
+tk.Label(root, text="Welcome to FileManager", font=("Arial", 22, "bold"), bg="White", fg="#5a189a").pack(pady=(20, 0))
 image = tk.PhotoImage(file="image3.png").subsample(2, 2)
 tk.Label(root, image=image).pack()
 
