@@ -1,6 +1,7 @@
 #importing the tkinter module
 import tkinter as tk
 import os
+from datetime import date
 from docx import Document
 
 print("hello world!")
@@ -35,7 +36,7 @@ def create_protokoll_de():
                 for cell in row.cells:
                     for para in cell.paragraphs:
                         alle_paragraphen.append(para)
-        ersetzungen = {"<Überschrift>": eingabe_ueberschrift, "<Bauteil>": eingabe_ueberschrift}
+        ersetzungen = {"<Überschrift>": eingabe_ueberschrift, "<Bauteil>": eingabe_ueberschrift, "<Datum1>": date.today().strftime("%d.%m.%Y")}
         for para in alle_paragraphen:
             for platzhalter, wert in ersetzungen.items():
                 if platzhalter in para.text:
