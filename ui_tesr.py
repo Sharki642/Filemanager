@@ -22,11 +22,18 @@ def create_protokoll_de():
     tk.Label(window, text="Abgabedatum:").pack()
     textfeld_abgabedatum = tk.Text(window, height=2, width=30)
     textfeld_abgabedatum.pack()
+    tk.Label(window, text="Lehrer:").pack()
+    lehrer_var = tk.StringVar(value="TILL")
+    lehrer_frame = tk.Frame(window)
+    lehrer_frame.pack()
+    for name in ["TILL", "KURA", "WEID", "DIRN"]:
+        tk.Radiobutton(lehrer_frame, text=name, variable=lehrer_var, value=name).pack(side=tk.LEFT, padx=5)
 
     def erstelle_date_ger():
         eingabe_name = textfeld_ger.get("1.0", tk.END).strip()
         eingabe_ueberschrift = textfeld_ueberschrift.get("1.0", tk.END).strip()
         eingabe_abgabedatum = textfeld_abgabedatum.get("1.0", tk.END).strip()
+        eingabe_lehrer = lehrer_var.get()
         if not eingabe_name:
             tk.Label(window, text="Bitte einen Dateinamen eingeben!", fg="red").pack()
             return
@@ -43,7 +50,7 @@ def create_protokoll_de():
                 for cell in row.cells:
                     for para in cell.paragraphs:
                         alle_paragraphen.append(para)
-        ersetzungen = {"<Überschrift>": eingabe_ueberschrift, "<Bauteil>": eingabe_ueberschrift, "<Datum1>": date.today().strftime("%d.%m.%Y"), "<Datum2>": eingabe_abgabedatum}
+        ersetzungen = {"<Überschrift>": eingabe_ueberschrift, "<Bauteil>": eingabe_ueberschrift, "<Datum1>": date.today().strftime("%d.%m.%Y"), "<Datum2>": eingabe_abgabedatum, "<Lehrer>": eingabe_lehrer}
         for para in alle_paragraphen:
             for platzhalter, wert in ersetzungen.items():
                 if platzhalter in para.text:
